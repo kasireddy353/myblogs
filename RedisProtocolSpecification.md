@@ -17,8 +17,7 @@ Lets understand this a little more. What happens when you type google.com on the
 
 <b>Step2:</b> The TCP/IP stack takes the request and resolves google.com to an IP address and then forms a TCP Packet. The TCP packet contains the below information, plus a lot more and sends the packet to the remote server.
 
-  (<b>Source IP, Source Port</b>, Destination IP, Destination Port, Protocol)
-  
+  (<b>Source IP, Source Port</b>, Destination IP, Destination Port, Protocol)  
       *******(Socket)*******
       
   (111.111.11.1, 67543, 67.43.54.22, 443, TCP )
