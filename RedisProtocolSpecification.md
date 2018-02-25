@@ -18,6 +18,7 @@ Lets understand this a little more. What happens when you type google.com on the
 <b>Step2:</b> The TCP/IP stack takes the request and resolves google.com to an IP address and then forms a TCP Packet. The TCP packet contains the below information.
 
   (<b>Source IP, Source Port</b>, Destination IP, Destination Port, Protocol)
+  
    ----------(Socket)-----------
    
    So essentially, socket is nothing but a virtual thing that the program uses to communicate over the network. Also, whenever    TCP stack opens a new connection with the remote server, it chooses a a random port on the client machine. If you are          curious to know more about it, run the program <b>TCPServer.java</b> and use telnet to connect to the program and observer    the port that is being used.
