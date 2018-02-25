@@ -19,7 +19,7 @@ Lets understand this a little more. What happens when you type google.com on the
 
   (<b>Source IP, Source Port</b>, Destination IP, Destination Port, Protocol)
   
-      -------(Socket)-------
+      *******(Socket)*******
       
   (111.111.11.1, 67543, 67.43.54.22, 443, TCP )
    
