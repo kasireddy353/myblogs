@@ -1,13 +1,13 @@
 
-#What is Redis?
+# What is Redis?
 
 As we all know, redis is a in-memory data structure store used as a cache (or maybe a database ) to store wide variety of data structures like Sets, Maps, hashes, strings etc.
 
-##How redis works?
+## How redis works?
 
 To understand this, we must first understand what is a file descriptor and socket. 
 
-###Socket
+### Socket
 
 `Socket` is just an endpoint of two way communication between a client and server. The endpoint we are referring to is combination of IP address and port number. So, in other words when we want to open a new connection with the remote server, the client should be aware of IP address and port (excluding few standard protocols like HTTP, HTTPS as they operate on a standard port. For instance, HTTP uses port 80 and HTTPS uses port 443).
 
@@ -43,7 +43,7 @@ Lets understand this a little more. What happens when you type google.com on the
 <b>Step4:</b> The same process happens again and agian until all the data is transferred between the machines.
 
 
-###File Descriptor
+### File Descriptor
   
 `File Descriptor` is just a number that uniquely identifies an open file in the operating system. Surprisingly, every thing is linux is a file including I/O resources, files, directories, sockets etc.
 
@@ -82,7 +82,7 @@ On a operating system, there are certain limits imposed on the number of file de
     
     Note: There are number of ways to modify the file descriptor limits.
     
-##Library Implementation
+## Library Implementation
 
 Now that, we have some level of understanding about sockets and file descriptors, let us start by implementing the custom redis library according to resid protocol specification.
 
