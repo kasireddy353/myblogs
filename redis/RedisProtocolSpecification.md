@@ -59,8 +59,9 @@ When we think of a file descriptor, we always think that they will be used for f
                
     java   57364   abc   23w   REG 1,1   0 52790321 /Users/abc/Documents/workspace/myblogs/somefile.txt
     
-    The number ---23--- in the baove result represents the file descriptor, ---w--- stands for write access. 
-    The same concept applies for any resource that we are using on the operating system.
+    The number ---23--- in the above result represents the file descriptor, ---w--- stands for write access. 
+    The same concept applies for any resource that we are using on the operating system like
+    sockets, IO streams etc.
                     
 
 
