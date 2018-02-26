@@ -34,11 +34,34 @@ Lets understand this a little more. What happens when you type google.com on the
       
       (67.43.54.22, 443, 111.111.11.1, 67543, TCP)
       
-      Note: This is just a high level flow of how a socket is used to transfer data as there is lot more complexity 
-      involved in exchanging information between two machines.
+      Note: This is just a high level flow of how a socket is used to transfer data as there is lot more 
+      complexity involved in exchanging information between two machines.
 
 
 <b>Step4:</b> The same process happens again and agian until all the data is transferred between the machines.
 
+
   
+<b>File Descriptor</b> is just a number that uniquely identifies an open file in the operating system. Surprisingly, every thing is linux is a file including I/O resources, files, directories, sockets etc.
+
+Ex: Whenever a file is opened, the operating system creates an entry to represent this file and stores its information. Each entry is represented by an integer value and this entry is termed as file descriptor.
+These numbers serve as an handle to the underlying machine-specific structure representing an open file, an open socket, or another source or sink of bytes. 
+ 
+When we think of a file descriptor, we always think that they will be used for files. But, that is not true from operating system perspective. Logically, the operations performed on other types of resources such as Sockets are similar to the one that are being performed on a file. For isntance,  read(), write() and close(). Hence, everything is called a file descriptor to eliminate confusion.
+  
+    Let's understand this with an example. Please refer to <b>FileDescriptor.java</b>. Run the program which 
+    will print <b> ProcessId </b> and <b> File Descriptor Number </b>. Once you have both the values, open 
+    terminal and run the below command.
+                    ----------------
+                    lsof | grep java
+                    ----------------
+    Verify for the processId above, you should see an entry as below.
+               
+    java   57364   abc   23w   REG 1,1   0 52790321 /Users/abc/Documents/workspace/myblogs/somefile.txt
+    
+    The number ---23--- in the baove result represents the file descriptor, ---w--- stands for write access. 
+    The same concept applies for any resource that we are using on the operating system.
+                    
+
+
   
