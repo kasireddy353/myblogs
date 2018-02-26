@@ -1,13 +1,15 @@
 
-<b>What is Redis?</b>
+#What is Redis?
 
 As we all know, redis is a in-memory data structure store used as a cache (or maybe a database ) to store wide variety of data structures like Sets, Maps, hashes, strings etc.
 
-<b>How redis works?</b>
+##How redis works?
 
 To understand this, we must first understand what is a file descriptor and socket. 
 
-<b>Socket</b> is just an endpoint of two way communication between a client and server. The endpoint we are referring to is combination of IP address and port number. So, in other words when we want to open a new connection with the remote server, the client should be aware of IP address and port (excluding few standard protocols like HTTP, HTTPS as they operate on a standard port. For instance, HTTP uses port 80 and HTTPS uses port 443).
+###Socket
+
+`Socket` is just an endpoint of two way communication between a client and server. The endpoint we are referring to is combination of IP address and port number. So, in other words when we want to open a new connection with the remote server, the client should be aware of IP address and port (excluding few standard protocols like HTTP, HTTPS as they operate on a standard port. For instance, HTTP uses port 80 and HTTPS uses port 443).
 
 https://stackoverflow.com/questions/3329641/how-do-multiple-clients-connect-simultaneously-to-one-port-say-80-on-a-server
 
@@ -41,16 +43,17 @@ Lets understand this a little more. What happens when you type google.com on the
 <b>Step4:</b> The same process happens again and agian until all the data is transferred between the machines.
 
 
+###File Descriptor
   
-<b>File Descriptor</b> is just a number that uniquely identifies an open file in the operating system. Surprisingly, every thing is linux is a file including I/O resources, files, directories, sockets etc.
+`File Descriptor` is just a number that uniquely identifies an open file in the operating system. Surprisingly, every thing is linux is a file including I/O resources, files, directories, sockets etc.
 
 Ex: Whenever a file is opened, the operating system creates an entry to represent this file and stores its information. Each entry is represented by an integer value and this entry is termed as file descriptor.
 These numbers serve as an handle to the underlying machine-specific structure representing an open file, an open socket, or another source or sink of bytes. 
  
 When we think of a file descriptor, we always think that they will be used for files. But, that is not true from operating system perspective. Logically, the operations performed on other types of resources such as Sockets are similar to the one that are being performed on a file. For isntance,  read(), write() and close(). Hence, everything is called a file descriptor to eliminate confusion.
   
-    Let's understand this with an example. Please refer to <b>FileDescriptor.java</b>. Run the program which 
-    will print <b> ProcessId </b> and <b> File Descriptor Number </b>. Once you have both the values, open 
+    Let's understand this with an example. Please refer to FileDescriptor.java<. Run the program which 
+    will print ProcessId and File Descriptor Number. Once you have both the values, open 
     terminal and run the below command.
                     ----------------
                     lsof | grep java
@@ -62,7 +65,44 @@ When we think of a file descriptor, we always think that they will be used for f
     The number ---23--- in the above result represents the file descriptor, ---w--- stands for write access. 
     The same concept applies for any resource that we are using on the operating system like
     sockets, IO streams etc.
-                    
+    
+On a operating system, there are certain limits imposed on the number of file descriptors that can be opened. To view the file descriptor limits, please use the below command.
+    
+    cat /etc/security/limits.conf
+    
+    Output:
+    ----------------------
+    *    soft nofile 64000
+    *    hard nofile 64000
+    root soft nofile 64000
+    root hard nofile 64000
+    
+    The asterisk at the beginning of the first two lines means 'apply this rule to all users except root’, 
+    and the last two lines set the limit only for the root user.
+    
+    Note: There are number of ways to modify the file descriptor limits.
+    
+##Library Implementation
+
+Now that, we have some level of understanding about sockets and file descriptors, let us start by implementing the custom redis library according to resid protocol specification.
+
+https://redis.io/topics/protocol
+
+Our library will implement "RESP Strings", but if you follow the spec we can customize/create the library for all data types.
+
+Please refer to the below files to implement your own library.
+- ```RedisLibraryUsage.java```
+- ```RedisLibrary.java```
+
+If you scale the above piece of code to support all data types and add connection pooling, they we have a full blown redis library.
+ 
+
+
+
+
+
+    
+                        
 
 
   
